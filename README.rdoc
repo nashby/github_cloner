@@ -1,6 +1,6 @@
 = github_cloner
 
-With github_cloner you have an easy way to clone your all projects from github.
+With github_cloner you have an easy way to clone all your projects from github.
 
 == Usage
 
