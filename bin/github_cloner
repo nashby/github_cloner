@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+$LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+require 'github_cloner'
+include Github
+if ARGV.size >= 3
+	cloner = Github::Cloner.new ARGV[0].to_s, ARGV[1].to_s, ARGV[2].to_s
+	cloner.clone
+else
+	puts 'Sorry, bro. I need your github name, git method (ssh, http, or git) and path to your new repos collection. Just use something like this: github_cloner nashby ssh ~/Desktop'
+end
