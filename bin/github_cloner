@@ -1,10 +1,66 @@
 #!/usr/bin/env ruby
 $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+
+require 'optparse'
+require 'ostruct'
 require 'github_cloner'
+
 include Github
-if ARGV.size >= 3
-	cloner = Github::Cloner.new ARGV[0].to_s, ARGV[1].to_s, ARGV[2].to_s
+
+class OptionParser
+	def self.parse(args)
+		options = OpenStruct.new
+		options.username = nil
+		options.git_method = 'http'
+		options.path = "."
+		options.repos = []
+		
+    opts = OptionParser.new do |opts|
+      opts.banner = "Usage: github_cloner [options]"
+
+      opts.separator ""
+      opts.separator "Specific options:"
+
+      # Mandatory argument.
+      opts.on("-u", "--username GITHUB_USERNAME",
+              "Require the GITHUB_USERNAME before executing your script") do |username|
+        options.username = username
+      end
+
+      # Optional argument
+      opts.on("-p", "--path [PATH]",
+              "PATH to new repos collection (default: current directory)") do |path|
+        options.path = path
+      end
+
+      opts.on("-m", "--method [METHOD]", ['http', 'git', 'ssh'],
+              "git clone [METHOD] (http, git, ssh. default: http)") do |git_method|
+        options.git_method = git_method
+      end
+
+      # List ofrepos.
+      opts.on("-r", "--repos x,y,z", Array, "List of needed repos (default: all)") do |repos|
+        options.repos = repos
+      end
+
+      opts.separator ""
+      opts.separator "Common options:"
+
+      opts.on_tail("-h", "--help", "Show this message") do
+        puts opts
+        exit
+      end
+    end		
+      opts.parse!(args)
+      options	
+	end
+end
+
+options = OptionParser.parse(ARGV)
+
+unless options.username.nil?
+	cloner = Github::Cloner.new options.username.to_s, options.git_method.to_s, options.path.to_s, options.repos
 	cloner.clone
 else
-	puts 'Sorry, bro. I need your github name, git method (ssh, http, or git) and path to your new repos collection. Just use something like this: github_cloner nashby ssh ~/Desktop'
+	puts 'Sorry, bro. I need to know your github name'
 end

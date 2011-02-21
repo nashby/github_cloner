@@ -6,10 +6,11 @@ module Github
 	
 		GITHUB_URL_API = 'http://github.com/api/v2/json/repos/show/'
 		
-		def initialize(github_uname, mode, path)
+		def initialize(github_uname, mode, path, repos)
 			@github_uname = github_uname
 			@mode = mode
 			@path = path
+			@repos = repos
 		end
 
 		def make_git_url(repo_name)
@@ -26,7 +27,7 @@ module Github
 		def get_gits
 			repos = JSON.parse(open(GITHUB_URL_API+@github_uname).read)
 			gits = []
-			repos['repositories'].each { |repo| gits << make_git_url(repo['name']) }
+			repos['repositories'].each { |repo| gits << make_git_url(repo['name']) if @repos.include? repo['name'] or @repos.empty? }
 			gits
 		end
 		

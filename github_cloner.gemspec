@@ -5,13 +5,13 @@
 
 Gem::Specification.new do |s|
   s.name = %q{github_cloner}
-  s.version = "0.1"
+  s.version = "0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Vasiliy Ermolovich"]
-  s.date = %q{2011-02-20}
+  s.date = %q{2011-02-22}
   s.default_executable = %q{github_cloner}
-  s.description = %q{an easy way to clone your all projects from github}
+  s.description = %q{an easy way to clone all your projects from github}
   s.email = %q{younash@gmail.com}
   s.executables = ["github_cloner"]
   s.extra_rdoc_files = [
@@ -25,7 +25,10 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "bin/github_cloner",
+    "github_cloner.gemspec",
     "lib/github_cloner.rb",
+    "pkg/github_cloner-0.1.gem",
+    "pkg/github_cloner-0.2.gem",
     "test/helper.rb",
     "test/test_github_cloner.rb"
   ]
@@ -33,7 +36,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.5.0}
-  s.summary = %q{an easy way to clone your all projects from github}
+  s.summary = %q{an easy way to clone all your projects from github}
   s.test_files = [
     "test/helper.rb",
     "test/test_github_cloner.rb"

@@ -6,13 +6,18 @@ With github_cloner you have an easy way to clone all your projects from github.
 
 	gem install github_cloner
 	
-	$ github_cloner [github_username] [github option] [path to collection]
-	
-	github_username - your github username (Thanks, Captain Obvious)
-	github option - ssh(Read-Write), http (Read-Only), git(Read-Only)
-	path - path to the collection of projects 
-	
-	$ github_cloner nashby http ~/Desktop/github_projects
+Usage: github_cloner [options]
+
+Specific options:
+    -u, --username GITHUB_USERNAME   Require the GITHUB_USERNAME before executing your script
+    -p, --path [PATH]                PATH to new repos collection (default: current directory)
+    -m, --method [METHOD]            git clone [METHOD] (http, git, ssh. default: http)
+    -r, --repos x,y,z                List of needed repos (default: all repos from your profile)
+
+Common options:
+    -h, --help                       Show this message
+
+	$ github_cloner --username nashby --method http --path ~/Desktop/github_projects
 
 == Contributing to github_cloner
  
