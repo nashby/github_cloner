@@ -25,7 +25,7 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{an easy way to clone all your projects from github}
   gem.email = "younash@gmail.com"
   gem.authors = ["Vasiliy Ermolovich"]
-  gem.files = Dir.glob('lib/**/*.rb')
+  gem.files.include Dir.glob('lib/**/*.rb')
 end
 Jeweler::RubygemsDotOrgTasks.new
 

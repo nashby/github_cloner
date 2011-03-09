@@ -19,9 +19,21 @@ Gem::Specification.new do |s|
     "README.rdoc"
   ]
   s.files = [
+    "Gemfile",
+    "Gemfile.lock",
+    "LICENSE.txt",
+    "README.rdoc",
+    "Rakefile",
+    "bin/github_cloner",
+    "github_cloner.gemspec",
     "lib/github_cloner.rb",
     "lib/github_cloner/github_helper.rb",
-    "lib/github_cloner/version.rb"
+    "lib/github_cloner/version.rb",
+    "pkg/github_cloner-0.1.gem",
+    "pkg/github_cloner-0.2.gem",
+    "pkg/github_cloner-0.3.0.gem",
+    "test/helper.rb",
+    "test/test_github_cloner.rb"
   ]
   s.homepage = %q{http://github.com/nashby/github_cloner}
   s.licenses = ["MIT"]

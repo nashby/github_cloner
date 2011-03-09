@@ -11,8 +11,9 @@ Usage: github_cloner [options]
 Specific options:
     -u, --username GITHUB_USERNAME   Require the GITHUB_USERNAME before executing your script
     -p, --path [PATH]                PATH to new repos collection (default: current directory)
+    -t, --timeout [TIMEOUT]					 Number of days from the last push befor repos will be placed in the inactive folder (default: disabled)
     -m, --method [METHOD]            git clone [METHOD] (http, git, ssh. default: http)
-    -r, --repos x,y,z                List of needed repos (default: all repos from your profile)
+    -r, --repos x,y,z                List of needed repos (default: all repos from your profile)				
 
 Common options:
     -h, --help                       Show this message
