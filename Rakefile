@@ -12,18 +12,20 @@ $LOAD_PATH.unshift('lib')
 
 require 'rake'
 require 'jeweler'
+require 'github_cloner/version'
 
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "github_cloner"
   gem.homepage = "http://github.com/nashby/github_cloner"
-  gem.version = "0.2"
+  gem.version = Cloner::Version::STRING
   gem.license = "MIT"
   gem.executables = ["github_cloner"]
   gem.summary = %Q{an easy way to clone all your projects from github}
   gem.description = %Q{an easy way to clone all your projects from github}
   gem.email = "younash@gmail.com"
   gem.authors = ["Vasiliy Ermolovich"]
+  gem.files = Dir.glob('lib/**/*.rb')
 end
 Jeweler::RubygemsDotOrgTasks.new
 

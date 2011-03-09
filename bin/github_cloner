@@ -5,14 +5,13 @@ require 'optparse'
 require 'ostruct'
 require 'github_cloner'
 
-include Github
-
 class OptionParser
 	def self.parse(args)
 		options = OpenStruct.new
 		options.username = nil
 		options.git_method = 'http'
 		options.path = "."
+		options.timeout = ""
 		options.repos = []
 		
     opts = OptionParser.new do |opts|
@@ -29,16 +28,21 @@ class OptionParser
 
       # Optional argument
       opts.on("-p", "--path [PATH]",
-              "PATH to new repos collection (default: current directory)") do |path|
+              "PATH to the new repos collection (default: current directory)") do |path|
         options.path = path
       end
+			
+	    opts.on("-t", "--timeout [TIMEOUT]",
+              "Number of days from the last push befor repos will be placed in the inactive folder (default: disabled)") do |timeout|
+        options.timeout = timeout
+      end		
 
       opts.on("-m", "--method [METHOD]", ['http', 'git', 'ssh'],
               "git clone [METHOD] (http, git, ssh. default: http)") do |git_method|
         options.git_method = git_method
       end
 
-      # List ofrepos.
+      # List of the repos.
       opts.on("-r", "--repos x,y,z", Array, "List of needed repos (default: all)") do |repos|
         options.repos = repos
       end
@@ -59,7 +63,12 @@ end
 options = OptionParser.parse(ARGV)
 
 unless options.username.nil?
-	cloner = Github::Cloner.new options.username.to_s, options.git_method.to_s, options.path.to_s, options.repos
+	opts = {:username => options.username.to_s, 
+					:method => options.git_method.to_s, 
+					:path => options.path.to_s,
+					:timeout => options.timeout.to_s,
+					:repos => options.repos}
+	cloner = Cloner.new opts
 	cloner.clone
 else
 	puts 'Sorry, bro. I need to know your github name'
