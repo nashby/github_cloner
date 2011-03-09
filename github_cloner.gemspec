@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{github_cloner}
-  s.version = "0.3.1"
+  s.version = "0.3.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Vasiliy Ermolovich"]
@@ -32,6 +32,7 @@ Gem::Specification.new do |s|
     "pkg/github_cloner-0.1.gem",
     "pkg/github_cloner-0.2.gem",
     "pkg/github_cloner-0.3.0.gem",
+    "pkg/github_cloner-0.3.1.gem",
     "test/helper.rb",
     "test/test_github_cloner.rb"
   ]

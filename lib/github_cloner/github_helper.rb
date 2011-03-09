@@ -17,7 +17,8 @@ module Github
 				else
 					repos << make_git_url(repo['name'], mode, username, "") 
 				end
-			end	
+			end
+			repos	
 		end
 		
 		def make_git_url(repo_name, mode, username, inactive)
