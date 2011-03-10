@@ -26,6 +26,7 @@ Jeweler::Tasks.new do |gem|
   gem.email = "younash@gmail.com"
   gem.authors = ["Vasiliy Ermolovich"]
   gem.files.include Dir.glob('lib/**/*.rb')
+  gem.files.exclude 'pkg'
 end
 Jeweler::RubygemsDotOrgTasks.new
 

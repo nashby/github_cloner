@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Vasiliy Ermolovich"]
-  s.date = %q{2011-03-09}
+  s.date = %q{2011-03-10}
   s.default_executable = %q{github_cloner}
   s.description = %q{an easy way to clone all your projects from github}
   s.email = %q{younash@gmail.com}
@@ -29,10 +29,6 @@ Gem::Specification.new do |s|
     "lib/github_cloner.rb",
     "lib/github_cloner/github_helper.rb",
     "lib/github_cloner/version.rb",
-    "pkg/github_cloner-0.1.gem",
-    "pkg/github_cloner-0.2.gem",
-    "pkg/github_cloner-0.3.0.gem",
-    "pkg/github_cloner-0.3.1.gem",
     "test/helper.rb",
     "test/test_github_cloner.rb"
   ]
