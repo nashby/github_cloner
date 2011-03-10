@@ -20,6 +20,8 @@ Common options:
 
 	$ github_cloner --username nashby --method http --path ~/Desktop/github_projects
 
+If you will not provide the username, `github_cloner` take it from `git config --global --get github.user`
+
 == Contributing to github_cloner
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet

@@ -6,13 +6,13 @@ require 'ostruct'
 require 'github_cloner'
 
 class OptionParser
-	def self.parse(args)
-		options = OpenStruct.new
-		options.username = nil
-		options.git_method = 'http'
-		options.path = "."
-		options.timeout = ""
-		options.repos = []
+  def self.parse(args)
+    options = OpenStruct.new
+    options.username = nil
+    options.git_method = 'http'
+    options.path = "."
+    options.timeout = ""
+    options.repos = []
 		
     opts = OptionParser.new do |opts|
       opts.banner = "Usage: github_cloner [options]"
@@ -20,20 +20,18 @@ class OptionParser
       opts.separator ""
       opts.separator "Specific options:"
 
-      # Mandatory argument.
       opts.on("-u", "--username GITHUB_USERNAME",
-              "Require the GITHUB_USERNAME before executing your script") do |username|
+              "Require the GITHUB_USERNAME before executing your script(default: username from git config --global --get github.user)") do |username|
         options.username = username
       end
 
-      # Optional argument
       opts.on("-p", "--path [PATH]",
               "PATH to the new repos collection (default: current directory)") do |path|
         options.path = path
       end
 			
 	    opts.on("-t", "--timeout [TIMEOUT]",
-              "Number of days from the last push befor repos will be placed in the inactive folder (default: disabled)") do |timeout|
+              "Number of days from the last push before repos will be placed in the inactive folder (default: disabled)") do |timeout|
         options.timeout = timeout
       end		
 
@@ -42,7 +40,6 @@ class OptionParser
         options.git_method = git_method
       end
 
-      # List of the repos.
       opts.on("-r", "--repos x,y,z", Array, "List of needed repos (default: all)") do |repos|
         options.repos = repos
       end
@@ -57,19 +54,23 @@ class OptionParser
     end		
       opts.parse!(args)
       options	
-	end
+  end
 end
 
 options = OptionParser.parse(ARGV)
 
+if options.username.nil? 
+  options.username = Github::git_config_name
+end
+
 unless options.username.nil?
-	opts = {:username => options.username.to_s, 
-					:method => options.git_method.to_s, 
-					:path => options.path.to_s,
-					:timeout => options.timeout.to_s,
-					:repos => options.repos}
-	cloner = Cloner.new opts
-	cloner.clone
+  opts = {:username => options.username.to_s.chomp, 
+          :method => options.git_method.to_s, 
+          :path => options.path.to_s,
+          :timeout => options.timeout.to_s,
+          :repos => options.repos}
+  cloner = Cloner.new opts
+  cloner.clone
 else
-	puts 'Sorry, bro. I need to know your github name'
+  puts 'Sorry, bro. I need to know your github name'
 end
